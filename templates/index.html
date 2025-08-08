@@ -7,30 +7,39 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
   <body>
-    <!-- Tab Navigation -->
-    <nav class="tab-nav">
-      <div class="tab-slider" id="tab-slider"></div>
-      <button class="tab-btn" data-tab="settings">
-        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m17-4a4 4 0 01-8 0 4 4 0 018 0zM7 21a4 4 0 100-8 4 4 0 000 8z"></path>
-        </svg>
-        <span class="tab-text" data-tr="settings">Ayarlar</span>
-      </button>
-      <button class="tab-btn active" data-tab="home">
-        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
-          <polyline points="9,22 9,12 15,12 15,22"></polyline>
-        </svg>
-        <span class="tab-text" data-tr="home">Ana Sayfa</span>
-      </button>
-      <button class="tab-btn" data-tab="bookmarks">
-        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
-        </svg>
-        <span class="tab-text" data-tr="bookmarks">Kaydedilenler</span>
-      </button>
-    </nav>
+    <!-- Header Navigation -->
+    <header class="main-header">
+      <div class="header-content">
+                 <!-- Logo -->
+         <div class="logo-container">
+           <img src="{{ url_for('static', filename='logo.png') }}" alt="Snapedia" class="logo" />
+         </div>
+        
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+          <button class="nav-item active" data-tab="home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+              <polyline points="9,22 9,12 15,12 15,22"></polyline>
+            </svg>
+            <span data-tr="home">Home</span>
+          </button>
+          <button class="nav-item" data-tab="bookmarks">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+            </svg>
+            <span data-tr="bookmarks">Bookmarks</span>
+          </button>
+          <button class="nav-item" data-tab="settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m17-4a4 4 0 01-8 0 4 4 0 018 0zM7 21a4 4 0 100-8 4 4 0 000 8z"></path>
+            </svg>
+            <span data-tr="settings">Settings</span>
+          </button>
+        </nav>
+      </div>
+    </header>
 
     <main class="container">
              <!-- Settings Tab -->
@@ -133,58 +142,33 @@
 
       <!-- Home Tab -->
       <section class="tab-content active" id="home-tab">
-        <div class="article-container" id="article-container">
-          <div class="article-hero">
-            <div class="article-image-container">
-              <img id="article-thumbnail" class="article-image" alt="Madde görseli" />
-              <div class="article-overlay">
-                <div class="article-content">
-                  <h1 id="article-title" class="article-title" data-tr="loading">Yükleniyor…</h1>
-                  <p id="article-extract" class="article-extract" data-tr="loading-desc">Lütfen bekleyin, rastgele bir madde getiriliyor.</p>
-                  
-                   
-                   <div class="article-actions">
-                     <a id="article-link" class="article-btn primary" href="#" target="_blank" rel="noopener noreferrer">
-                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                         <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                         <polyline points="15,3 21,3 21,9"></polyline>
-                         <line x1="10" y1="14" x2="21" y2="3"></line>
-                       </svg>
-                       <span data-tr="read-on-wiki">Wikipedia'da oku</span>
-                     </a>
-                     <button id="refresh-btn" class="article-btn secondary" type="button">
-                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                         <polyline points="23,4 23,10 17,10"></polyline>
-                         <polyline points="1,20 1,14 7,14"></polyline>
-                         <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"></path>
-                       </svg>
-                       <span data-tr="get-new">Yeni getir</span>
-                     </button>
-                   </div>
-                  <p id="error-message" class="error-message" role="alert" hidden></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Floating Action Buttons -->
-          <div class="floating-actions">
-            <button class="floating-btn bookmark-btn" id="bookmark-btn" title="Kaydet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
-              </svg>
-            </button>
-            <button class="floating-btn share-btn" id="share-btn" title="Paylaş">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <circle cx="18" cy="5" r="3"></circle>
-                <circle cx="6" cy="12" r="3"></circle>
-                <circle cx="18" cy="19" r="3"></circle>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-              </svg>
-            </button>
+        <div class="articles-feed" id="articles-feed">
+          <!-- Article cards will be dynamically inserted here -->
+          <div class="loading-indicator" id="loading-indicator">
+            <div class="loading-spinner"></div>
+            <p data-tr="loading">Yükleniyor…</p>
           </div>
         </div>
+        
+        <!-- Floating Action Buttons -->
+        <div class="floating-actions">
+          <button class="floating-btn bookmark-btn" id="bookmark-btn" title="Kaydet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+            </svg>
+          </button>
+          <button class="floating-btn share-btn" id="share-btn" title="Paylaş">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <p id="error-message" class="error-message" role="alert" hidden></p>
       </section>
 
       <!-- Bookmarks Tab -->
