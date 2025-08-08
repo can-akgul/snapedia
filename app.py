@@ -74,7 +74,7 @@ def fetch_trending_wikipedia_titles(language: str = 'en', limit: int = 50) -> li
     lang_code = get_wikipedia_lang_code(language)
     
     # Dün için most viewed articles
-    yesterday = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y/%m/%d')
+    yesterday = (datetime.datetime.now() - datetime.timedelta(days=10)).strftime('%Y/%m/%d')
     
     try:
         url = f"https://wikimedia.org/api/rest_v1/metrics/pageviews/top/{lang_code}.wikipedia/all-access/{yesterday}"

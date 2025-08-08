@@ -543,7 +543,7 @@
         });
   
         // Set initial feed type
-        settingsManager.setFeedType('random', 0);
+        settingsManager.setFeedType('trending', 1);
       },
   
       setFeedType: (feedType, index) => {
