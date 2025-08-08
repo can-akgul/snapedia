@@ -13,11 +13,11 @@ A TikTok-style interface for discovering Wikipedia articles with infinite scroll
 - **Responsive Design** - Works perfectly on mobile and desktop
 
 ## How to start
-   git clone
-   cd snapedia
-   pip install -r requirements.txt
-   python3 app.py
-   http://localhost:5000
+   - git clone
+   - cd snapedia
+   - pip install -r requirements.txt
+   - python3 app.py
+   - http://localhost:5000
 
 ## How It Works
 
