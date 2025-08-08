@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="tr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wikipedia Explorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+      <div class="tab-slider" id="tab-slider"></div>
+      <button class="tab-btn" data-tab="settings">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m17-4a4 4 0 01-8 0 4 4 0 018 0zM7 21a4 4 0 100-8 4 4 0 000 8z"></path>
+        </svg>
+        <span class="tab-text" data-tr="settings">Ayarlar</span>
+      </button>
+      <button class="tab-btn active" data-tab="home">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+          <polyline points="9,22 9,12 15,12 15,22"></polyline>
+        </svg>
+        <span class="tab-text" data-tr="home">Ana Sayfa</span>
+      </button>
+      <button class="tab-btn" data-tab="bookmarks">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+        </svg>
+        <span class="tab-text" data-tr="bookmarks">Kaydedilenler</span>
+      </button>
+    </nav>
+
+    <main class="container">
+             <!-- Settings Tab -->
+       <section class="tab-content" id="settings-tab" hidden>
+         <div class="settings-card">
+           <h1 class="main-settings-title" data-tr="settings">Ayarlar</h1>
+
+           <!-- 1. Theme Section -->
+           <div class="settings-section">
+             <h2 class="section-title" data-tr="theme-section">Tema</h2>
+             <div class="theme-selector">
+               <div class="theme-slider" id="theme-slider"></div>
+               <button class="theme-option" data-theme="light">
+                 <svg viewBox="0 0 24 24" fill="currentColor">
+                   <circle cx="12" cy="12" r="5"></circle>
+                   <line x1="12" y1="1" x2="12" y2="3"></line>
+                   <line x1="12" y1="21" x2="12" y2="23"></line>
+                   <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                   <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                   <line x1="1" y1="12" x2="3" y2="12"></line>
+                   <line x1="21" y1="12" x2="23" y2="12"></line>
+                   <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                   <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                 </svg>
+                 <span data-tr="light">Açık</span>
+               </button>
+               <button class="theme-option active" data-theme="dark">
+                 <svg viewBox="0 0 24 24" fill="currentColor">
+                   <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                 </svg>
+                 <span data-tr="dark">Koyu</span>
+               </button>
+               <button class="theme-option" data-theme="system">
+                 <svg viewBox="0 0 24 24" fill="currentColor">
+                   <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                   <line x1="8" y1="21" x2="16" y2="21"></line>
+                   <line x1="12" y1="17" x2="12" y2="21"></line>
+                 </svg>
+                 <span data-tr="system">Sistem</span>
+               </button>
+             </div>
+           </div>
+
+           <!-- 2. Feed Type Section -->
+           <div class="settings-section">
+             <h2 class="section-title" data-tr="feed-type">Feed Type</h2>
+             <div class="feed-type-selector">
+               <div class="feed-type-slider" id="feed-type-slider"></div>
+               <button class="feed-type-option active" data-feed-type="random">
+                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                   <path d="M16 3h5v5"></path>
+                   <line x1="4" y1="20" x2="21" y2="3"></line>
+                   <path d="M21 16v5h-5"></path>
+                   <line x1="15" y1="15" x2="21" y2="21"></line>
+                   <line x1="4" y1="4" x2="9" y2="9"></line>
+                 </svg>
+                 <span data-tr="random">Random</span>
+               </button>
+               <button class="feed-type-option" data-feed-type="trending">
+                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                   <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                 </svg>
+                 <span data-tr="trending">Trending</span>
+               </button>
+               <button class="feed-type-option" data-feed-type="interests">
+                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                   <circle cx="12" cy="12" r="10"></circle>
+                   <polygon points="10,8 16,12 10,16 10,8"></polygon>
+                 </svg>
+                 <span data-tr="interest-topics">Interest Topics</span>
+               </button>
+             </div>
+             
+             <div class="setting-group">
+               <label class="setting-label" data-tr="language">Dil:</label>
+               <select class="language-select" id="language-select">
+                 <option value="tr">Türkçe</option>
+                 <option value="en">English</option>
+                 <option value="ru">Русский</option>
+                 <option value="de">Deutsch</option>
+               </select>
+             </div>
+           </div>
+
+           <!-- 3. Topics Section -->
+           <div class="settings-section" id="topics-section">
+             <h2 class="section-title" data-tr="topics">Topics</h2>
+             <p class="section-description" data-tr="topics-desc">Bu seçenekler sadece yukarıda "Interest Topics" seçtiğinizde aktif olur.</p>
+             <div class="interests-grid" id="interests-grid">
+               <!-- JavaScript ile doldurulacak -->
+             </div>
+           </div>
+
+           <!-- Apply Button -->
+           <div class="settings-section">
+             <button class="apply-settings-btn" id="apply-settings" data-tr="apply-settings">Ayarları Uygula</button>
+           </div>
+         </div>
+       </section>
+
+      <!-- Home Tab -->
+      <section class="tab-content active" id="home-tab">
+        <div class="article-container" id="article-container">
+          <div class="article-hero">
+            <div class="article-image-container">
+              <img id="article-thumbnail" class="article-image" alt="Madde görseli" />
+              <div class="article-overlay">
+                <div class="article-content">
+                  <h1 id="article-title" class="article-title" data-tr="loading">Yükleniyor…</h1>
+                  <p id="article-extract" class="article-extract" data-tr="loading-desc">Lütfen bekleyin, rastgele bir madde getiriliyor.</p>
+                  
+                   
+                   <div class="article-actions">
+                     <a id="article-link" class="article-btn primary" href="#" target="_blank" rel="noopener noreferrer">
+                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                         <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                         <polyline points="15,3 21,3 21,9"></polyline>
+                         <line x1="10" y1="14" x2="21" y2="3"></line>
+                       </svg>
+                       <span data-tr="read-on-wiki">Wikipedia'da oku</span>
+                     </a>
+                     <button id="refresh-btn" class="article-btn secondary" type="button">
+                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                         <polyline points="23,4 23,10 17,10"></polyline>
+                         <polyline points="1,20 1,14 7,14"></polyline>
+                         <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"></path>
+                       </svg>
+                       <span data-tr="get-new">Yeni getir</span>
+                     </button>
+                   </div>
+                  <p id="error-message" class="error-message" role="alert" hidden></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Floating Action Buttons -->
+          <div class="floating-actions">
+            <button class="floating-btn bookmark-btn" id="bookmark-btn" title="Kaydet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+              </svg>
+            </button>
+            <button class="floating-btn share-btn" id="share-btn" title="Paylaş">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bookmarks Tab -->
+      <section class="tab-content" id="bookmarks-tab" hidden>
+        <div class="bookmarks-container">
+          <h2 class="bookmarks-title" data-tr="saved-articles">Kaydedilen Makaleler</h2>
+          <div class="bookmarks-grid" id="bookmarks-grid">
+            <div class="empty-bookmarks" id="empty-bookmarks">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+              </svg>
+              <p data-tr="no-bookmarks">Henüz kaydettiğiniz makale yok</p>
+              <p data-tr="bookmark-hint">Ana sayfadan makaleleri kaydetmeye başlayın</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html> 
