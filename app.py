@@ -9,7 +9,7 @@ from urllib.error import URLError, HTTPError
 from flask import Flask, jsonify, render_template, request
 
 # Flask uygulamasını oluştur
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.', static_folder='.')
 
 # Varsayılan ilgi alanları
 DEFAULT_INTERESTS = [
@@ -266,6 +266,22 @@ def handle_bookmarks():
     elif request.method == "DELETE":
         # Client-side'da localStorage'dan silinecek
         return jsonify({"message": "Bookmark removed on client-side"})
+
+
+@app.route("/style.css")
+def serve_css():
+    """CSS dosyasını serve eder."""
+    from flask import send_from_directory
+    import os
+    return send_from_directory(os.getcwd(), 'style.css', mimetype='text/css')
+
+
+@app.route("/script.js")
+def serve_js():
+    """JavaScript dosyasını serve eder."""
+    from flask import send_from_directory
+    import os
+    return send_from_directory(os.getcwd(), 'script.js', mimetype='application/javascript')
 
 
 if __name__ == "__main__":

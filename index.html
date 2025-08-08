@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Snapedia</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <!-- Header Navigation -->
@@ -12,7 +12,7 @@
       <div class="header-content">
                  <!-- Logo -->
          <div class="logo-container">
-           <img src="{{ url_for('static', filename='logo.png') }}" alt="Snapedia" class="logo" />
+           <h1 class="logo-text">Snapedia</h1>
          </div>
         
         <!-- Navigation Menu -->
@@ -188,6 +188,6 @@
       </section>
     </main>
 
-    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    <script defer src="/script.js"></script>
   </body>
 </html> 

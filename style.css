@@ -129,11 +129,11 @@
     align-items: center;
   }
   
-  .logo {
-    height: 32px;
-    width: auto;
-    max-width: 150px;
-    object-fit: contain;
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0;
   }
   
   .nav-menu {
@@ -193,9 +193,8 @@
       gap: 4px;
     }
     
-    .logo {
-      height: 28px;
-      max-width: 120px;
+    .logo-text {
+      font-size: 1.2rem;
     }
   }
   
