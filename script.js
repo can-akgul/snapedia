@@ -210,7 +210,7 @@
       isLoading: false,
       isLoadingMore: false,
       articleType: 'random',
-      preloadCount: 3 // Number of articles to preload ahead
+      preloadCount: 7 // Number of articles to preload ahead
     };
   
     // DOM elements
